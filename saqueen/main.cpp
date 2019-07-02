@@ -67,7 +67,7 @@ int sa_search() {
         else {
         //  to-do: update the current node with a probability
             double rd=rand()/(RAND_MAX+1.0);
-            if(exp(deltaE/T)>rd&&exp(deltaE/T)<1)current=neighbor;
+            if(exp(deltaE/T)>rd&&exp(deltaE/T)<1)current=neighbor;//用温度卡值
         }
         if (DEBUG_MODE) {
             printf ("%d %g %d\n", t, T, current.value);
@@ -103,11 +103,11 @@ void generateInit(state * p_st){
 从当前状态的邻居中随机选取一个
 邻居的定义可以是固定7个列，更换一个列的皇后的位置，这样共有8*7=56个邻居
 */
-state select_neighbor_at_random(const state current){
+state select_neighbor_at_random(const state current){//随机生成邻居，不一定要最好的，允许坏的情况出现
   // to-do
     state temp=current;
-    int i=rand()%NUM_QUEENS;
-    int j=rand()%NUM_QUEENS;
+    int i=rand()%NUM_QUEENS;//随机数生成列
+    int j=rand()%NUM_QUEENS;//随机数生成行
     while (j==current.pos[i]) {
         j=rand()%NUM_QUEENS;
     }
